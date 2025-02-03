@@ -23,8 +23,17 @@ commercial_real_state_types = ['Conjunto Comercial/Sala',
                                 'Loteamento/Condomínio', 'Sítio',
                                 'Pousada/Chalé', 'Hotel', 'Indústria']
 
-residencial_real_states_df = data.query("@commercial_real_state_types != Tipo")
+df = data.query("@commercial_real_state_types != Tipo")
 
-plot_data_frame(residencial_real_states_df)
+plot_data_frame(df)
+
+# %%
+# Understand what type os more present on the database
+percent_type_df =df.Tipo.value_counts(normalize=True).to_frame().sort_values("Tipo")
+percent_type_df.plot(kind="bar", figsize=(14, 10), xlabel="Tipos", ylabel="Percentual")
+
+# %%
+df = df.query("Tipo == 'Apartamento'")
+
 
 # %%
