@@ -39,3 +39,7 @@ df = df.query("Tipo == 'Apartamento'")
 df = df.fillna(0)
 
 # %%
+registers_to_remove = df.query('Valor == 0 | Condominio == 0').index
+df.drop(registers_to_remove, axis=0, inplace=True)
+df.drop("Tipo", axis=1, inplace=True)
+# %%
