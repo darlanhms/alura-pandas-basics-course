@@ -42,4 +42,11 @@ df = df.fillna(0)
 registers_to_remove = df.query('Valor == 0 | Condominio == 0').index
 df.drop(registers_to_remove, axis=0, inplace=True)
 df.drop("Tipo", axis=1, inplace=True)
+
+# %%
+selection = (df["Quartos"] == 1) & (df["Valor"] < 1200)
+df_1 = df[selection]
+
+selection_2 = (df["Quartos"] >= 2) & (df["Valor"] < 3000) & (df["Area"] > 70)
+df_2 = df[selection_2]
 # %%
