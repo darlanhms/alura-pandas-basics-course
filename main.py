@@ -49,4 +49,6 @@ df_1 = df[selection]
 
 selection_2 = (df["Quartos"] >= 2) & (df["Valor"] < 3000) & (df["Area"] > 70)
 df_2 = df[selection_2]
+
 # %%
+df.to_csv("apartments_data.csv", index=False, sep=";")
