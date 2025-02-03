@@ -32,8 +32,10 @@ plot_data_frame(df)
 percent_type_df =df.Tipo.value_counts(normalize=True).to_frame().sort_values("Tipo")
 percent_type_df.plot(kind="bar", figsize=(14, 10), xlabel="Tipos", ylabel="Percentual")
 
-# %%
 df = df.query("Tipo == 'Apartamento'")
 
+# %%
+# Fill nulls with 0's
+df = df.fillna(0)
 
 # %%
