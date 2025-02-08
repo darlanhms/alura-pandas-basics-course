@@ -35,4 +35,14 @@ summarized_df.insert(1, "Quantidade de emissão", max_values)
 
 # %%
 gas_emission_by_sector.swaplevel(0, 1).groupby(level=0).idxmax()
+
+# %%
+yearly_emissions.groupby("Ano")[["Emissão"]].mean().idxmax()
+
+# %%
+yearly_emission_mean = yearly_emissions.groupby(["Ano", "Gás"])[["Emissão"]].mean().reset_index()
+
+yearly_emission_mean = yearly_emission_mean.pivot_table(index = "Ano", columns = "Gás", values = "Emissão")
+
+yearly_emission_mean.plot(subplots=True, figsize=(10, 40));
 # %%
