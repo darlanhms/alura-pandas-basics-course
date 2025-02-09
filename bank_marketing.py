@@ -2,6 +2,8 @@ import pandas as pd
 import plotly.express as px
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.dummy import DummyClassifier
 
 data = pd.read_csv("./marketing_investimento.csv")
 
@@ -38,4 +40,12 @@ label_encoder = LabelEncoder()
 
 y_transformed = label_encoder.fit_transform(y)
 
-y_transformed
+# %% Data separation
+x_trained, x_test, y_trained, y_test = train_test_split(x_transformed, y_transformed, stratify=y, random_state=5)
+
+# %%
+dummy = DummyClassifier()
+dummy.fit(x_trained, y_trained)
+
+dummy.score(x_test, y_test)
+# %%
